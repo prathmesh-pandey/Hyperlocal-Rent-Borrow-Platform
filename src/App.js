@@ -1,17 +1,19 @@
 import React from 'react';
 import './App.css';
-import Hero from './components/hero';
-// import HowItWorks, Categories, Footer (we’ll add soon)
+import Navbar from './Navbar';
+import Hero from './Hero';
+import Cards from './Cards';
+import Footer from './Footer';
 
-function App() {
-  return (
-    <div className="App">
-      <Hero />
-      {/* <HowItWorks /> */}
-      {/* <Categories /> */}
-      {/* <Footer /> */}
-    </div>
-  );
+const App = () => {
+    return (
+        <div className="App">
+            <Navbar />
+            <Hero />
+            <Cards />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
