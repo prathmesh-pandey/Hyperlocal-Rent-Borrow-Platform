@@ -1,14 +1,15 @@
-import React from "react";
-import './App.css';  // Link to our future CSS
+import React from 'react';
+import './App.css';
+import Hero from './components/hero';
+// import HowItWorks, Categories, Footer (we’ll add soon)
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Your Startup</h1>
-        <p>Your amazing app starts here!</p>
-        <button className="start-button">Get Started</button>
-      </header>
+      <Hero />
+      {/* <HowItWorks /> */}
+      {/* <Categories /> */}
+      {/* <Footer /> */}
     </div>
   );
 }
