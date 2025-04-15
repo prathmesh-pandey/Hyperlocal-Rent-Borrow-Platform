@@ -4,7 +4,7 @@
     color: white;
     text-align: center;
   }
-  
+
   .cta-button {
     background-color: #61dafb;
     color: black;
@@ -14,5 +14,24 @@
     margin-top: 20px;
     border-radius: 8px;
     cursor: pointer;
+    margin: 0 200px ;
+    
+  }
+  .cta-main {
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 0 20px
   }
   
+  .cta-sub {
+    font-size: 14px;
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 0 20px
+  }

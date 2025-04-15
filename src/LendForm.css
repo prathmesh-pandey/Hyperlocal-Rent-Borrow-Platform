@@ -1,0 +1,27 @@
+.form-wrapper {
+    padding: 40px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  .lend-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .lend-form input,
+  .lend-form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .lend-form button {
+    padding: 10px;
+    background-color: #61dafb;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }  
