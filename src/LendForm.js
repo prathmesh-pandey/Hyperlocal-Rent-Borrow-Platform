@@ -33,8 +33,6 @@ const LendForm = () => {
       const result = await response.text();
       console.log('✅ Success:', result);
       alert('Listing submitted! 🎉');
-
-      // 💡 Reset the form after successful submission
       setFormData({
         productName: '',
         category: '',

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 const listingSchema = new mongoose.Schema({
-  itemName: String,
-  description: String,
+  productName: String,
+  specifications: String,
   category: String,
+  availability: String,
   price: Number,
   location: String,
   lenderName: String,

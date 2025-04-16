@@ -26,14 +26,18 @@ app.get('/', (req, res) => {
 });
 
 app.post('/submit-listing', async (req, res) => {
-  try {
-    const listing = new Listing(req.body);
-    await listing.save();
-    res.status(200).send('Data saved! 🎉');
-  } catch (err) {
-    res.status(500).send('Error saving data 😵');
-  }
-});
+    try {
+      console.log('Incoming data:', req.body);
+  
+      const listing = new Listing(req.body);
+      await listing.save();
+  
+      res.status(200).send('Data saved! 🎉');
+    } catch (err) {
+      console.error('❌ Save error:', err);
+      res.status(500).send('Error saving data 😵');
+    }
+  });
 app.get('/listings', async (req, res) => {
     try {
       const listings = await Listing.find();

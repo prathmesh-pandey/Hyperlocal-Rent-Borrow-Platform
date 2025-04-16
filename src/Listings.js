@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import './Listings.css';
 const Listings = () => {
   const [listings, setListings] = useState([]);
 
@@ -16,20 +16,20 @@ const Listings = () => {
       {listings.length === 0 ? (
         <p>🫥 Nothing to rent, bro. Go touch some grass.</p>
       ) : (
-        <ul>
-          {listings.map((item, index) => (
-            <li key={index}>
-              <h3>{item.productName}</h3>
-              <p>Category: {item.category}</p>
-              <p>Availability: {item.availability}</p>
-              <p>Price: ₹{item.price}</p>
-              <p>Details: {item.specifications}</p>
-              <hr />
-            </li>
-          ))}
-        </ul>
+        <ul className="listing-grid">
+  {listings.map((item, index) => (
+    <li key={index} className="listing-card">
+      <h3>{item.productName}</h3>
+      <p><strong>Category:</strong> {item.category}</p>
+      <p><strong>Availability:</strong> {item.availability}</p>
+      <p><strong>Price:</strong> ₹{item.price}</p>
+      <p><strong>Details:</strong> {item.specifications}</p>
+    </li>
+  ))}
+</ul>       
       )}
     </div>
+    
   );
 };
 
