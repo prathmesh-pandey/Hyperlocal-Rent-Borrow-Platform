@@ -8,7 +8,7 @@ const Hero = () => {
     <h1>Borrow Smarter. Rent Local.</h1>
     <p>Skip buying. Lend and rent from your neighborhood!</p>
     <div className="button-container">
-    <button className="cta-button">
+    <button className="cta-button" onClick={() => navigate('/rent')}>
   <span className="cta-main">Rent</span><br />
   <span className="cta-sub"><i>an item</i></span>
 </button>

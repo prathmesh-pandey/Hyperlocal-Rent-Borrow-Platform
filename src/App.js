@@ -4,6 +4,7 @@ import Navbar from'./Navbar'
 import Hero from './Hero'
 import Cards from    './Cards';
 import Footer from './Footer';
+import Listings from './Listings';
 import{
 BrowserRouter as Router,Routes,
 Route}from'react-router-dom';
@@ -21,6 +22,7 @@ return(
 <Footer/>
 </>}/>
 <Route path="/lend" element={<LendForm/>}/>
+<Route path="/rent" element={<Listings />} />
 </Routes>
 </Router>
 </div>)

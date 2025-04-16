@@ -34,7 +34,23 @@ app.post('/submit-listing', async (req, res) => {
     res.status(500).send('Error saving data 😵');
   }
 });
-
+app.get('/listings', async (req, res) => {
+    try {
+      const listings = await Listing.find();
+      res.json(listings);
+    } catch (err) {
+      res.status(500).send('Oops, listings went boom 💣');
+    }
+  });
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+// Fetch all listings
+app.get('/rent-items', async (req, res) => {
+    try {
+      const items = await Listing.find();
+      res.status(200).json(items); 
+    } catch (err) {
+      res.status(500).send('Error fetching data 😵');
+    }
+  });  
