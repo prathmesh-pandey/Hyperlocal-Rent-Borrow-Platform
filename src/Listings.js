@@ -14,7 +14,9 @@ const Listings = () => {
     <div className="listings-container">
       <h2>Rentable Items</h2>
       {listings.length === 0 ? (
-        <p>🫥 Nothing to rent, bro. Go touch some grass.</p>
+        <div className="empty-message">
+        🫥 Nothing to rent, bro. Go touch some grass.
+        </div>
       ) : (
         <ul className="listing-grid">
   {listings.map((item, index) => (
@@ -27,7 +29,7 @@ const Listings = () => {
     </li>
   ))}
 </ul>       
-      )}
+      )}    
     </div>
     
   );

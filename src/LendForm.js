@@ -90,9 +90,12 @@ const LendForm = () => {
           onChange={handleChange}
           required
         ></textarea>
+        <div className="button-wrapper">
         <button type="submit">Submit</button>
+      </div>
       </form>
     </div>
+    
   );
 };
 
