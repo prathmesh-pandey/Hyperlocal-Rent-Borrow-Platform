@@ -1,14 +1,17 @@
 import React from'react';
 import'./App.css';
+import './styles/global.css';
+
+import{
+    BrowserRouter as Router,Routes,
+    Route}from'react-router-dom';
+
 import Navbar from'./Navbar'
-import Hero from './Hero'
+import Hero from './Hero';
 import Cards from    './Cards';
 import Footer from './Footer';
 import Listings from './Listings';
-import{
-BrowserRouter as Router,Routes,
-Route}from'react-router-dom';
-import LendForm from './LendForm'
+import LendForm from './LendForm';
 
 const App=()=>{
 return(

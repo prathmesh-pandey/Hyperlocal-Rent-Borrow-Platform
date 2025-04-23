@@ -2,11 +2,11 @@
     display: flex;
     justify-content: space-around;
     padding: 40px;
-    background-color: #f4f4f4;
+    background-color: #749cf3;
 }
 
 .card {
-    background-color: white;
+    background-color: rgb(99, 224, 255);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -19,5 +19,20 @@
 }
 
 .card p {
-    color: #555;
+    color: #555555;
 }
+.card, .listing-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover, .listing-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  
