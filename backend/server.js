@@ -49,7 +49,6 @@ app.get('/listings', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-// Fetch all listings
 app.get('/rent-items', async (req, res) => {
     try {
       const items = await Listing.find();
