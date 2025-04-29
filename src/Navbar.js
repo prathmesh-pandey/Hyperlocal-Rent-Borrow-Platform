@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    navigate(`/rent?search=${value}`);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -10,7 +19,13 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center">
-        <input type="text" placeholder="Search for items to borrow..." className="search-bar" />
+        <input
+          type="text"
+          placeholder="Search for items to borrow..."
+          className="search-bar"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
       </div>
 
       <div className="navbar-right">

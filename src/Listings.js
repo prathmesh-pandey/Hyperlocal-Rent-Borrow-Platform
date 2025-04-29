@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './Listings.css';
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(''); // 🔍 Add this line
+  const [searchQuery, setSearchQuery] = useState('');
+  const location = useLocation(); 
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search).get('search') || '';
+    setSearchQuery(query); 
+  }, [location.search]);
 
   useEffect(() => {
     fetch('http://localhost:5000/listings')
@@ -11,6 +18,7 @@ const Listings = () => {
       .then((data) => setListings(data))
       .catch((err) => console.error('Fetch exploded:', err));
   }, []);
+
   const filteredListings = listings.filter((item) =>
     item.productName.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -18,14 +26,7 @@ const Listings = () => {
   return (
     <div className="listings-container">
       <h2>Rentable Items</h2>
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Search for items..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-
+  
       {filteredListings.length === 0 ? (
         <div className="empty-message">
           🫥 Nothing to rent, bro. Go touch some grass.

@@ -11,7 +11,10 @@
 .navbar-left .logo {
   font-size: 20px;
   font-weight: bold;
-  color: #ff7b00;
+  background: linear-gradient( #FF7E5F, #FEB47B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
 }
 
 .navbar-center .search-bar {
@@ -47,11 +50,11 @@
 
 .login-btn {
   background: transparent;
-  color: #ff7b00;
+  color: #ffae00;
 }
 
 .signup-btn {
-  background-color: #ff7b00;
+  background-color: #ffae00;
   color: #fff;
 }
 

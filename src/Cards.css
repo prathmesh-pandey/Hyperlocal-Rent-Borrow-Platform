@@ -1,38 +1,50 @@
 .cards-section {
     display: flex;
     justify-content: space-around;
-    padding: 40px;
-    background-color: #749cf3;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #FF7E5F, #FEB47B);
+    flex-wrap: wrap;
+    gap: 40px;
 }
-
 .card {
-    background-color: rgb(99, 224, 255);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 280px;
     text-align: center;
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 .card h3 {
     margin: 10px 0;
+    font-size: 1.6rem;
+    color: #333333;
 }
 
 .card p {
-    color: #555555;
+    color: #666666;
+    font-size: 1rem;
+    margin-top: 10px;
 }
-.card, .listing-card {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+
+.listing-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    border-radius: 16px;
+    border-radius: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover, .listing-card:hover {
+}
+
+.listing-card:hover {
     transform: translateY(-5px) scale(1.03);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-  }
-  
-  
+}
