@@ -13,10 +13,29 @@ const Listings = () => {
   }, [location.search]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/listings')
-      .then((res) => res.json())
-      .then((data) => setListings(data))
-      .catch((err) => console.error('Fetch exploded:', err));
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        fetch(`http://localhost:5000/nearby-listings?lat=${latitude}&lng=${longitude}`)
+          .then((res) => res.json())
+          .then((data) => setListings(data))
+          .catch((err) => {
+            console.error('Nearby fetch exploded:', err);
+            fallbackToAll();
+          });
+      },
+      (err) => {
+        console.warn('Geolocation error:', err);
+        fallbackToAll();
+      }
+    );
+
+    function fallbackToAll() {
+      fetch('http://localhost:5000/listings')
+        .then((res) => res.json())
+        .then((data) => setListings(data))
+        .catch((err) => console.error('Total fallback failed too:', err));
+    }
   }, []);
 
   const filteredListings = listings.filter((item) =>

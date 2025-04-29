@@ -21,30 +21,44 @@ const LendForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:5000/submit-listing', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.text();
-      console.log('✅ Success:', result);
-      alert('Listing submitted! 🎉');
-      setFormData({
-        productName: '',
-        category: '',
-        availability: '',
-        price: '',
-        specifications: ''
-      });
-
-    } catch (error) {
-      console.error('❌ Error:', error);
-      alert('Failed to submit listing 😢');
-    }
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
+  
+      const dataToSend = {
+        ...formData,
+        location: {
+          coordinates: [longitude, latitude],
+          type: 'Point'
+        }
+      };
+  
+      try {
+        const response = await fetch('http://localhost:5000/submit-listing', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        });
+  
+        const result = await response.text();
+        console.log('✅ Success:', result);
+        alert('Listing submitted! 🎉');
+        setFormData({
+          productName: '',
+          category: '',
+          availability: '',
+          price: '',
+          specifications: ''
+        });
+  
+      } catch (error) {
+        console.error('❌ Error:', error);
+        alert('Failed to submit listing 😢');
+      }
+    }, (err) => {
+      alert("Can't access your location. Please enable GPS.");
+    });
   };
 
   return (

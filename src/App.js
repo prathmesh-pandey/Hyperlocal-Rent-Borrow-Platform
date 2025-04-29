@@ -1,7 +1,7 @@
 import React from'react';
 import'./App.css';
 import './styles/global.css';
-
+import MapView from './MapView'; 
 import{
     BrowserRouter as Router,Routes,
     Route}from'react-router-dom';
@@ -26,6 +26,7 @@ return(
 </>}/>
 <Route path="/lend" element={<LendForm/>}/>
 <Route path="/rent" element={<Listings />} />
+<Route path="/map" element={<MapView />} />
 </Routes>
 </Router>
 </div>)

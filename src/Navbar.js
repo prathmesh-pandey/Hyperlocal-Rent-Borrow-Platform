@@ -30,7 +30,7 @@ const Navbar = () => {
 
       <div className="navbar-right">
         <a href="#">Browse</a>
-        <a href="#">How it works</a>
+        <a href="/map">Map View</a>
         <button className="login-btn">Login</button>
         <button className="signup-btn">Sign up</button>
         <Link to="/lend" className="list-btn">List an item</Link>

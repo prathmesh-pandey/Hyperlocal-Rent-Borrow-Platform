@@ -8,8 +8,6 @@ const app = express();
 const PORT = 5000;
 
 app.use(express.static('client'));
-
-// Middleware
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,10 +26,8 @@ app.get('/', (req, res) => {
 app.post('/submit-listing', async (req, res) => {
     try {
       console.log('Incoming data:', req.body);
-  
       const listing = new Listing(req.body);
       await listing.save();
-  
       res.status(200).send('Data saved! 🎉');
     } catch (err) {
       console.error('❌ Save error:', err);
@@ -56,4 +52,26 @@ app.get('/rent-items', async (req, res) => {
     } catch (err) {
       res.status(500).send('Error fetching data 😵');
     }
-  });  
+  }); 
+  app.get('/nearby-listings', async (req, res) => {
+    const { lat, lng } = req.query;
+    if (!lat || !lng) return res.status(400).send('Missing coordinates.');
+  
+    try {
+      const listings = await Listing.find({
+        location: {
+          $nearSphere: {
+            $geometry: {
+              type: "Point",
+              coordinates: [parseFloat(lng), parseFloat(lat)]
+            },
+            $maxDistance: 5000 // distance in meters
+          }
+        }
+      });
+      res.json(listings);
+    } catch (err) {
+      console.error('Nearby fetch error:', err);
+      res.status(500).send('Failed to get nearby listings.');
+    }
+  }); 

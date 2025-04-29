@@ -6,13 +6,25 @@ const listingSchema = new mongoose.Schema({
   category: String,
   availability: String,
   price: Number,
-  location: String,
   lenderName: String,
   contactInfo: String,
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number], // [longitude, latitude]
+      required: true
+    }
+  },
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
+
+listingSchema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('Listing', listingSchema);
