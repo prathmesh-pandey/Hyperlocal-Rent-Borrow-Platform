@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './LendForm.css';
+import { useDropzone } from 'react-dropzone';
 
 const LendForm = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,32 @@ const LendForm = () => {
     category: '',
     availability: '',
     price: '',
-    specifications: ''
+    specifications: '',
+    dailyRate: '',
+    weeklyRate: '',
+    securityDeposit: '',
+  });
+
+  // 🔥 Updated for multiple image files
+  const [images, setImages] = useState([]);
+
+  // 👇 Setup react-dropzone
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/*': []
+    },
+    multiple: true,
+    maxFiles: 10,
+    maxSize: 5 * 1024 * 1024, // 5MB
+    onDrop: (acceptedFiles) => {
+      setImages(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file)
+          })
+        )
+      );
+    }
   });
 
   const handleChange = (e) => {
@@ -21,42 +47,57 @@ const LendForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (images.length === 0) {
+      alert('Please upload at least one photo 📸');
+      return;
+    }
+
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords;
-  
-      const dataToSend = {
-        ...formData,
-        location: {
-          coordinates: [longitude, latitude],
-          type: 'Point'
-        }
-      };
-  
+
+      const data = new FormData();
+      data.append('productName', formData.productName);
+      data.append('category', formData.category);
+      data.append('availability', formData.availability);
+      data.append('price', formData.price);
+      data.append('specifications', formData.specifications);
+      data.append('dailyRate', formData.dailyRate);
+      data.append('weeklyRate', formData.weeklyRate);
+      data.append('securityDeposit', formData.securityDeposit);
+
+      // Append all selected images
+      images.forEach((img) => data.append('photos', img));
+
+      data.append('latitude', latitude);
+      data.append('longitude', longitude);
+
       try {
         const response = await fetch('http://localhost:5000/submit-listing', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(dataToSend),
+          body: data
         });
-  
+
         const result = await response.text();
         console.log('✅ Success:', result);
         alert('Listing submitted! 🎉');
+
+        // Reset everything
         setFormData({
           productName: '',
           category: '',
           availability: '',
           price: '',
-          specifications: ''
+          specifications: '',
+          dailyRate: '',
+          weeklyRate: '',
+          securityDeposit: '',
         });
-  
+        setImages([]); // Clear previews
       } catch (error) {
         console.error('❌ Error:', error);
         alert('Failed to submit listing 😢');
       }
-    }, (err) => {
+    }, () => {
       alert("Can't access your location. Please enable GPS.");
     });
   };
@@ -68,19 +109,26 @@ const LendForm = () => {
         <input
           type="text"
           name="productName"
-          placeholder="Product Name"
+          placeholder="What are you listing?"
           value={formData.productName}
           onChange={handleChange}
           required
         />
-        <input
-          type="text"
+        <select
           name="category"
-          placeholder="Category"
           value={formData.category}
           onChange={handleChange}
           required
-        />
+        >
+          <option value="">Select a category</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Books">Books</option>
+          <option value="Tools">Tools</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Sports">Sports</option>
+          <option value="Other">Other</option>
+        </select>
         <input
           type="text"
           name="availability"
@@ -89,27 +137,76 @@ const LendForm = () => {
           onChange={handleChange}
           required
         />
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={formData.price}
-          onChange={handleChange}
-          required
-        />
+
+        {/* 👇 Image upload dropzone — from here till here the updates have been made, rest is same */}
+        <label className="section-title">Photos</label>
+        <div {...getRootProps({ className: 'dropzone' })}>
+          <input {...getInputProps()} />
+          <div className="upload-instructions">
+            <span className="plus-icon">+</span>
+            <p>Drag and drop photos here, or <span className="browse">browse</span></p>
+            <p className="note">Upload up to 10 photos (Max 5MB each)</p>
+          </div>
+        </div>
+        <div className="preview-thumbnails">
+          {images.map((file, index) => (
+            <img
+              key={index}
+              src={file.preview}
+              alt={`preview ${index}`}
+              className="thumbnail"
+            />
+          ))}
+        </div>
+        {/* 👆 till here the updates have been made */}
+
+        <div className="pricing-section">
+          <h3>Pricing</h3>
+
+          <label htmlFor="dailyRate">Daily Rate (₹)</label>
+          <input
+            type="number"
+            id="dailyRate"
+            name="dailyRate"
+            value={formData.dailyRate}
+            onChange={handleChange}
+            placeholder="0"
+          />
+
+          <label htmlFor="weeklyRate">Weekly Rate (₹)</label>
+          <input
+            type="number"
+            id="weeklyRate"
+            name="weeklyRate"
+            value={formData.weeklyRate}
+            onChange={handleChange}
+            placeholder="0"
+          />
+
+          <label htmlFor="securityDeposit">Security Deposit (₹)</label>
+          <input
+            type="number"
+            id="securityDeposit"
+            name="securityDeposit"
+            value={formData.securityDeposit}
+            onChange={handleChange}
+            placeholder="0"
+          />
+        </div>
+
         <textarea
           name="specifications"
           placeholder="Specifications"
           value={formData.specifications}
           onChange={handleChange}
+          className="mt-6 w-full border rounded-lg p-3"
           required
         ></textarea>
         <div className="button-wrapper">
-        <button type="submit">Submit</button>
-      </div>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
-    
   );
 };
 

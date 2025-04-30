@@ -1,46 +1,187 @@
 .form-wrapper {
-  max-width: 500px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background: linear-gradient(135deg, #FF7E5F, #FEB47B);
-  border-radius: 20px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.lend-form h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
 }
 
 .lend-form input,
 .lend-form textarea {
   width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.8rem;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s ease-in;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease;
 }
 
 .lend-form input:focus,
 .lend-form textarea:focus {
-  border-color: #1e90ff; 
+  border-color: #007bff;
+  background-color: #fff;
+  outline: none;
+}
+
+.lend-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .lend-form button {
-  background-color: #000a03; 
-  color: #fff;
-  border: none;
-  padding: 0.9rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
+  font-weight: 600;
+  color: white;
+  background-color: #ff6b00;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease-in;
+  transition: background-color 0.2s ease;
 }
 
 .lend-form button:hover {
-  background-color: #e64a19; /* Darker shade on hover */
+  background-color: #e65c00;
 }
-.button-wrapper {
-  display: flex;
-  justify-content: center;
+.lend-form select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease;
 }
 
+.lend-form select:focus {
+  border-color: #007bff;
+  background-color: #fff;
+  outline: none;
+}
+.pricing-section {
+  margin-top: 2rem;
+  padding: 1.5rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fafafa;
+}
+
+.pricing-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.pricing-section label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.pricing-section input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.pricing-section input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+textarea[name="specifications"] {
+  margin-top: 0.02rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  
+}
+.lend-form > * {
+  margin-bottom: 2rem;
+}
+.section-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+}
+
+.dropzone:hover {
+  border-color: #888;
+}
+
+.upload-instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #555;
+}
+
+.plus-icon {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff6600;
+}
+
+.browse {
+  color: #ff6600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.note {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.preview-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}

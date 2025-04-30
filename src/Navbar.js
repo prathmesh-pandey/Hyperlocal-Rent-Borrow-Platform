@@ -29,7 +29,6 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-right">
-        <a href="#">Browse</a>
         <a href="/map">Map View</a>
         <button className="login-btn">Login</button>
         <button className="signup-btn">Sign up</button>
