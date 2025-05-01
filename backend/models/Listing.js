@@ -6,12 +6,9 @@ const listingSchema = new mongoose.Schema({
   category: String,
   availability: String,
   price: Number,
+  dailyRate: Number,
   lenderName: String,
-  photo: String,
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
+  photo: [String],
   contactInfo: String,
   location: {
     type: {

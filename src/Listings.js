@@ -57,7 +57,7 @@ const Listings = () => {
               <h3>{item.productName}</h3>
               <p><strong>Category:</strong> {item.category}</p>
               <p><strong>Availability:</strong> {item.availability}</p>
-              <p><strong>Price:</strong> ₹{item.price}</p>
+              <p><strong>Price:</strong> ₹{item.dailyRate}</p>
               <p><strong>Details:</strong> {item.specifications}</p>
             </li>
           ))}

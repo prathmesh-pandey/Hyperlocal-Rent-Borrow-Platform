@@ -13,18 +13,15 @@ const LendForm = () => {
     weeklyRate: '',
     securityDeposit: '',
   });
-
-  // 🔥 Updated for multiple image files
+  
   const [images, setImages] = useState([]);
-
-  // 👇 Setup react-dropzone
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': []
     },
     multiple: true,
     maxFiles: 10,
-    maxSize: 5 * 1024 * 1024, // 5MB
+    maxSize: 5 * 1024 * 1024,
     onDrop: (acceptedFiles) => {
       setImages(
         acceptedFiles.map((file) =>
@@ -66,7 +63,7 @@ const LendForm = () => {
       data.append('securityDeposit', formData.securityDeposit);
 
       // Append all selected images
-      images.forEach((img) => data.append('photos', img));
+      images.forEach((img) => data.append('photo', img));
 
       data.append('latitude', latitude);
       data.append('longitude', longitude);
@@ -138,7 +135,6 @@ const LendForm = () => {
           required
         />
 
-        {/* 👇 Image upload dropzone — from here till here the updates have been made, rest is same */}
         <label className="section-title">Photos</label>
         <div {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />
@@ -158,7 +154,6 @@ const LendForm = () => {
             />
           ))}
         </div>
-        {/* 👆 till here the updates have been made */}
 
         <div className="pricing-section">
           <h3>Pricing</h3>

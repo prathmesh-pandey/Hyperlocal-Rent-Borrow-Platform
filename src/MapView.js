@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -14,7 +13,7 @@ L.Icon.Default.mergeOptions({
 
 const MapView = () => {
   const [listings, setListings] = useState([]);
-  const [position, setPosition] = useState([19.0760, 72.8777]); // Default: Mumbai
+  const [position, setPosition] = useState([27.602945, 77.595008]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
